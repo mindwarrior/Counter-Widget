@@ -2,16 +2,15 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.value
+    count: this.props.counter.value
   };
 
   handleIncrement = product => {
-    console.log(product);
-    this.setState({ value: this.state.count + 1 });
+    this.setState({ count: this.state.count + 1 });
   };
 
   render() {
-    console.log("props", this.props);
+    console.log(this.props);
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
@@ -22,6 +21,12 @@ class Counter extends Component {
           className="btn btn-secondary btn-sm"
         >
           Increment
+        </button>
+        <button
+          onClick={() => this.props.onDelete(this.props.counter.id)}
+          className="btn btn-danger btn-sm m-2"
+        >
+          Delete
         </button>
       </div>
     );
