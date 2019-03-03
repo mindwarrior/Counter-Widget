@@ -4,17 +4,22 @@ class Counter extends Component {
   state = {
     count: 0
   };
- 
-handleIncrement() {
-  console.log ('Increment Clicked', this);
 
-let boundIncrement = handleIncrement.bind(state);
-}
+  handleIncrement = product => {
+    console.log(product);
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  doHandleIncrement = () => {
+    this.handleIncrement({ id: 1 });
+  };
   render() {
     return (
       <div>
-        <span className={"this.getBadgeClasses()"}></span>
-        <button onClick={boundIncrement()}className="btn btn-secondary btn-sm"
+        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+        <button
+          onClick={this.doHandleIncrement}
+          className="btn btn-secondary btn-sm"
         >
           Increment
         </button>
@@ -22,7 +27,7 @@ let boundIncrement = handleIncrement.bind(state);
     );
   }
   getBadgeClasses() {
-    let classes = "badge  m-2 badge-";
+    let classes = "badge m-2 badge-";
     classes += this.state.count === 0 ? "warning" : "primary";
     return classes;
   }
@@ -32,6 +37,5 @@ let boundIncrement = handleIncrement.bind(state);
     return count === 0 ? "Zero" : count;
   }
 }
-
 
 export default Counter;
